@@ -1,4 +1,4 @@
-# Beer-Temp-Watcher
+# Beer_Brewer-Temperature-IOT
 
 IOT Thermometer project to control the temperature and humidity of the environment of my Beer Kit Brewer.
 
