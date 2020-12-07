@@ -86,19 +86,19 @@ try:
         
         # MEDIA TEMP
         display.lcd_clear()
-        display.lcd_display_string(f"Media {media}", 1)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"Media: {media}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"Leituras: {counter}", 2)  # Refresh the first line of display with a different message
         time.sleep(15)                                     # Give time for the message to be read
 
         # MAX TEMP
         display.lcd_clear()
-        display.lcd_display_string(f"Max Temp {max_temp}", 1)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"Max Temp: {max_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_max_temp}", 2)  # Refresh the first line of display with a different message
         time.sleep(15)                                     # Give time for the message to be read
 
         # MIN TEMP
         display.lcd_clear()
-        display.lcd_display_string(f"Min Temp {min_temp}", 1)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"Min Temp: {min_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_min_temp}", 2)  # Refresh the first line of display with a different message
         time.sleep(15)                                     # Give time for the message to be read
 
