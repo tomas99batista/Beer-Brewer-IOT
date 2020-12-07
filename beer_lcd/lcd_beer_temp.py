@@ -57,7 +57,7 @@ try:
             time_max_temp = datetime.now()
 
         # MIN TEMP
-        if float(temp) > min_temp:
+        if float(temp) < min_temp:
             min_temp = float(temp)
             time_min_temp = datetime.now()
         
