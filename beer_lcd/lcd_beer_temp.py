@@ -30,6 +30,24 @@ def get_temp_hum():
     else:
         print('Failed to get reading. Try again!')
 
+
+def long_string(display, text = '', num_line = 1, num_cols = 20):
+	""" 
+	Parameters: (driver, string to print, number of line to print, number of columns of your display)
+	Return: This function send to display your scrolling string.
+	"""
+	if(len(text) > num_cols):
+		display.lcd_display_string(text[:num_cols],num_line)
+		time.sleep(1)
+		for i in range(len(text) - num_cols + 1):
+			text_to_print = text[i:i+num_cols]
+			display.lcd_display_string(text_to_print,num_line)
+			time.sleep(0.2)
+		time.sleep(1)
+	else:
+		display.lcd_display_string(text,num_line)
+
+
 max_temp = 0
 time_max_temp = datetime.now()
 
@@ -38,7 +56,7 @@ time_min_temp = datetime.now()
 
 counter = 0
 total = 0
-# Main body of code
+
 try:
     while True:
         # Remember that your sentences can only be 16 characters long!
@@ -64,26 +82,27 @@ try:
         # ACTUAL TEMP
         display.lcd_display_string(f"T {temp} | H {hum}", 1) # Write line of text to first line of display
         display.lcd_display_string(f"{datetime.now()}", 2) # Write line of text to second line of display
-        time.sleep(15)                                     # Give time for the message to be read
+        time.sleep(30)                                     # Give time for the message to be read
         
         # MEDIA TEMP
         display.lcd_clear()
         display.lcd_display_string(f"Media {media}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"Leituras: {counter}", 2)  # Refresh the first line of display with a different message
-        time.sleep(5)                                     # Give time for the message to be read
+        time.sleep(15)                                     # Give time for the message to be read
 
         # MAX TEMP
         display.lcd_clear()
         display.lcd_display_string(f"Max Temp {max_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_max_temp}", 2)  # Refresh the first line of display with a different message
-        time.sleep(5)                                     # Give time for the message to be read
+        time.sleep(15)                                     # Give time for the message to be read
 
         # MIN TEMP
         display.lcd_clear()
         display.lcd_display_string(f"Min Temp {min_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_min_temp}", 2)  # Refresh the first line of display with a different message
-        time.sleep(5)                                     # Give time for the message to be read
+        time.sleep(15)                                     # Give time for the message to be read
 
-except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
-    print("Cleaning up!")
+except Exception as e: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
+    print("Error!")
     display.lcd_clear()
+    long_string(display, e, 1)
