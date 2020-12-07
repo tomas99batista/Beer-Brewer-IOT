@@ -33,6 +33,9 @@ def get_temp_hum():
 max_temp = 0
 time_max_temp = datetime.now()
 
+min_temp = 123456789
+time_min_temp = datetime.now()
+
 counter = 0
 total = 0
 # Main body of code
@@ -52,22 +55,33 @@ try:
         if float(temp) > max_temp:
             max_temp = float(temp)
             time_max_temp = datetime.now()
+
+        # MIN TEMP
+        if float(temp) > min_temp:
+            min_temp = float(temp)
+            time_min_temp = datetime.now()
         
         # ACTUAL TEMP
         display.lcd_display_string(f"T {temp} | H {hum}", 1) # Write line of text to first line of display
         display.lcd_display_string(f"{datetime.now()}", 2) # Write line of text to second line of display
         time.sleep(15)                                     # Give time for the message to be read
         
+        # MEDIA TEMP
+        display.lcd_clear()
+        display.lcd_display_string(f"Media {media}", 1)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"Leituras: {counter}", 2)  # Refresh the first line of display with a different message
+        time.sleep(5)                                     # Give time for the message to be read
+
         # MAX TEMP
         display.lcd_clear()
         display.lcd_display_string(f"Max Temp {max_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_max_temp}", 2)  # Refresh the first line of display with a different message
         time.sleep(5)                                     # Give time for the message to be read
 
-        # MEDIA TEMP
+        # MAX TEMP
         display.lcd_clear()
-        display.lcd_display_string(f"Media {media}", 1)  # Refresh the first line of display with a different message
-        display.lcd_display_string(f"Leituras: {counter}", 2)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"Min Temp {min_temp}", 1)  # Refresh the first line of display with a different message
+        display.lcd_display_string(f"{time_min_temp}", 2)  # Refresh the first line of display with a different message
         time.sleep(5)                                     # Give time for the message to be read
 
 except KeyboardInterrupt: # If there is a KeyboardInterrupt (when you press ctrl+c), exit the program and cleanup
