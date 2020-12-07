@@ -78,7 +78,7 @@ try:
         display.lcd_display_string(f"{time_max_temp}", 2)  # Refresh the first line of display with a different message
         time.sleep(5)                                     # Give time for the message to be read
 
-        # MAX TEMP
+        # MIN TEMP
         display.lcd_clear()
         display.lcd_display_string(f"Min Temp {min_temp}", 1)  # Refresh the first line of display with a different message
         display.lcd_display_string(f"{time_min_temp}", 2)  # Refresh the first line of display with a different message
