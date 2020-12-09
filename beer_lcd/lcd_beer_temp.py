@@ -26,6 +26,7 @@ def get_temp_hum():
     # Reading the DHT11 is very sensitive to timings and occasionally
     # the Pi might fail to get a valid reading. So check if readings are valid.
     if humidity is not None and temperature is not None:
+        print('Temperature: {0:0.1f} C'.format(temperature))
         return str(temperature), str(humidity)
     else:
         print('Failed to get reading. Try again!')
@@ -70,12 +71,14 @@ try:
         media = total/counter
         
         # MAX TEMP
-        if float(temp) > max_temp:
+        # This way it saves the last time the max was reached
+        if float(temp) >= max_temp:
             max_temp = float(temp)
             time_max_temp = datetime.now()
 
         # MIN TEMP
-        if float(temp) < min_temp:
+        # This way it saves the last time the max was reached
+        if float(temp) <= min_temp:
             min_temp = float(temp)
             time_min_temp = datetime.now()
         
